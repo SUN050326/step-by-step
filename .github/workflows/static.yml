@@ -1,0 +1,108 @@
+# Simple workflow for deploying static content to GitHub Pages
+name: Deploy static content to Pages
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["main"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # Single deploy job since we're just deploying
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload entire repository
+          path: '.'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
+- name: Deploy static site to AWS (S3+CDN+R53)
+  # You may pin to the exact commit or the version.
+  # uses: bitovi/github-actions-deploy-static-site-to-aws@d51f8d905f34a40b8abc6567db6ffab15a205fec
+  uses: bitovi/github-actions-deploy-static-site-to-aws@v0.2.10
+  with:
+    # Specifies if this action should checkout the code
+    checkout: # optional, default is true
+    # AWS access key ID
+    aws_access_key_id: 
+    # AWS secret access key
+    aws_secret_access_key: 
+    # AWS default region
+    aws_default_region: # optional, default is us-east-1
+    # AWS Role to assume.
+    aws_role_to_assume: # optional
+    # Set to override the AWS resource identifier for the deployment.  Defaults to `${org}-{repo}-{branch}`.  Use with destroy to destroy specific resources.
+    aws_resource_identifier: # optional
+    # A JSON object of additional tags that will be included on created resources. Example: `{"key1": "value1", "key2": "value2"}`
+    aws_additional_tags: # optional
+    # Option to run Terraform apply / destroy option. Will run plan if nothing defined.
+    tf_action: # optional
+    # Change this to be anything you want to. Carefull to be consistent here. A missing file could trigger recreation, or stepping over destruction of non-defined objects.
+    tf_state_file_name: # optional
+    # Append a string to the tf-state-file. Setting this to `unique` will generate `tf-state-aws-unique`. Can co-exist with the tf_state_file_name variable. 
+    tf_state_file_name_append: # optional
+    # AWS S3 bucket to use for Terraform state. Defaults to `${org}-${repo}-{branch}-tf-state`
+    tf_state_bucket: # optional
+    # Force purge and deletion of S3 bucket defined if terraform destroy action succeded.
+    tf_state_bucket_destroy: # optional
+    # Source folder for files to be published. Will ignore any hidden file. Defaults to root folder of the calling repo if nothing defined.
+    aws_site_source_folder: 
+    # Include hidden files in the source folder. Defaults to `false`
+    aws_site_source_include_hidden: # optional
+    # Root object to be served as entry-point. Defaults to `index.html`
+    aws_site_root_object: # optional
+    # Error document set to S3 website config. Defaults to none.
+    aws_site_error_document: # optional
+    #  AWS S3 bucket name to use for the public files. Defaults to `${org}-${repo}-{branch}-sp`
+    aws_site_bucket_name: # optional
+    # Enable or disables the use of CDN. Defaults to `false`.
+    aws_site_cdn_enabled: # optional
+    # Extra CNAMEs (alternate domain names), if any, for this distribution. Will default to defined domain if none passed.
+    aws_site_cdn_aliases: # optional
+    # Customize error codes, Definition done with JSON variables
+    aws_site_cdn_custom_error_codes: # optional
+    # Comma separated list of response headers policy IDs for CloudFront. Eg. Managed-CORS-with-preflight-and-SecurityHeadersPolicy is 67f7725c-6f97-4210-82d7-5512b31e9d42.
+    aws_site_cdn_response_headers_policy_id: # optional
+    # Minimum TTL (in seconds) for CloudFront cache. Default is 0.
+    aws_site_cdn_min_ttl: # optional
+    # Default TTL (in seconds) for CloudFront cache. Default is 86400 (24 hours).
+    aws_site_cdn_default_ttl: # optional
+    # Maximum TTL (in seconds) for CloudFront cache. Default is 31536000 (365 days).
+    aws_site_cdn_max_ttl: # optional
+    # Define the root domain name for the application. e.g. `bitovi.com`
+    aws_r53_domain_name: # optional
+    # Define the sub-domain part of the URL. Defaults to `${GITHUB_ORG_NAME}-${GITHUB_REPO_NAME}-${GITHUB_BRANCH_NAME}`.
+    aws_r53_sub_domain_name: # optional
+    # Deploy application to root domain. Will create root and www records. Default is `false`.
+    aws_r53_root_domain_deploy: # optional
+    # Define the certificate ARN to use for the application.'
+    aws_r53_cert_arn: # optional
+    # Generates and manage the root cert for the application. Default is `false`.
+    aws_r53_create_root_cert: # optional
+    # Generates and manage the sub-domain certificate for the application. Default is `false`.
+    aws_r53_create_sub_cert: # optional
