@@ -1,0 +1,39 @@
+{
+  "url": "http://127.0.0.1:8080/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "步迹",
+      "hasCanvas": true,
+      "bodyTextLen": 545,
+      "bodyTextHash": "46898751f790f497b14d710ce3a7a4d18c5517427d1b66b064c3676c685cb24f",
+      "bodyTextPrefix": "步迹 平面人流沙盘 日常 高峰 疏散 1× 暂停 重置 场地模型 选一个现成平面，或在空白场地上自己画。 地铁站厅 两个闸机口。",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "步迹",
+      "hasCanvas": true,
+      "bodyTextLen": 202,
+      "bodyTextHash": "d2407f08bc474f99f6ac9f9fa380871749bd477e32d80101529b7a5915106ae1",
+      "bodyTextPrefix": "步迹 平面人流沙盘 1× 暂停 平面 模型 每格 1 米 0 人在场 场地 绘制 数据 现场 0:00 在场 0人 已离开 0人",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview-mobile.png"
+    }
+  },
+  "brandWarnings": [
+    "BRAND WARNING: this looks like a game/canvas app but src/lib/og/site.json is missing \"type\": \"x:game\". X uses og:type=x:game to present the unfurl as a game card — set it in /workspace/src/lib/og/site.json per /workspace/.grok/skills/og/SKILL.md. Do not invent x:type or overload twitter:card as the game signal.",
+    "BRAND WARNING: this looks like a game/canvas app but /workspace/public/x-banner.jpg is missing. Games need a 50:11 X feed card (1200×264 JPEG) at public/x-banner.jpg — open /workspace/.grok/skills/og/SKILL.md and finish the brand-asset pass."
+  ],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-preview.json"
+}

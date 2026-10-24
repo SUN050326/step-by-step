@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #f3efe6;
+  --color-surface: #fffdf8;
+  --color-ink: #1a1814;
+  --color-muted: #6f675e;
+  --color-line: #e4dccf;
+  --color-teal: #0f6e6e;
+  --color-on-teal: #f3fffc;
+  --color-clay: #c45c26;
+  --color-on-clay: #fff6f1;
+  --font-sans: "Noto Sans SC", "WenQuanYi Zen Hei", system-ui, sans-serif;
+  --font-serif: "Noto Serif SC", "WenQuanYi Zen Hei", serif;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: var(--color-paper);
+    color: var(--color-ink);
+  }
+  body {
+    font-family: var(--font-sans);
+    margin: 0;
+  }
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+  button,
+  input {
+    font: inherit;
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+  button:disabled {
+    cursor: not-allowed;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-teal);
+    outline-offset: 2px;
+  }
+  input[type="range"] {
+    accent-color: var(--color-teal);
+    width: 100%;
+    height: 2.75rem;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      transition: none !important;
+      animation: none !important;
+    }
+  }
+}
+
+.heat-legend {
+  background: linear-gradient(
+    90deg,
+    rgba(15, 110, 110, 0.25),
+    rgb(196, 140, 48),
+    rgb(166, 42, 32)
+  );
+}
